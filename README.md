@@ -32,6 +32,6 @@ Port forwarding is set up so host machine can se the two "Wildflies" - try going
 
 1. `$ vagrant plugin install vagrant-aws`
 2. `$ vagrant box add dummy https://github.com/mitchellh/vagrant-aws/raw/master/dummy.box`
-3. copy the Vagranfile from /vagrant-aws folder in this project
+3. copy the Vagrantfile from /vagrant-aws folder in this project
 4. `$ vagrant up --provider=aws`
 5. Enjoy
