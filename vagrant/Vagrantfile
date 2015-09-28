@@ -1,0 +1,22 @@
+Vagrant.configure(2) do |config|
+  config.vm.box = "ubuntu/trusty64"
+
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 4096
+    v.cpus = 2
+  end
+
+  config.vm.provision "docker" do |d|
+#    d.pull_images "dimtruck/repose-docker"
+    d.pull_images "jboss/wildfly"
+    d.run "repose", 
+      image: "dimtruck/repose-docker",
+      args: "-d -p 8080:8080 -p 9777:9777"
+    d.run "wild1",
+      image: "jboss/wildfly",
+      args: "-d -p 8081:8080"
+    d.run "wild2",
+      image: "jboss/wildfly",
+      args: "-d -p 8082:8080"        
+  end
+end
