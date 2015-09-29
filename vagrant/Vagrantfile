@@ -1,4 +1,5 @@
 Vagrant.configure(2) do |config|
+
   config.vm.box = "ubuntu/trusty64"
   config.vm.network "forwarded_port", guest: 8081, host: 8081
   config.vm.network "forwarded_port", guest: 8082, host: 8082
@@ -8,13 +9,19 @@ Vagrant.configure(2) do |config|
     v.cpus = 2
   end
 
-  config.vm.provision "docker" do |d|
-#    d.pull_images "dimtruck/repose-docker"
-    d.pull_images "jboss/wildfly"
+  # The following section is used when working with proxy
+  if Vagrant.has_plugin?("vagrant-proxyconf")
+    config.proxy.http     = "http://abc:xyz"
+    config.proxy.https    = "https://abc:xyz"
+    config.proxy.no_proxy = "localhost,127.0.0.1"
+    
+    # special handling of docker because it is still not installed and 'vagrant-proxyconf' does not configure it
+    docker_proxy = 'printf "export http_proxy=$http_proxy\nexport https_proxy=$https_proxy\n" >> /etc/default/docker'
+    config.vm.provision('shell', inline: docker_proxy)
+  end
 
-#    d.run "repose", 
-#      image: "dimtruck/repose-docker",
-#      args: "-d -p 8080:8080 -p 9777:9777"
+  config.vm.provision "docker" do |d|
+    d.pull_images "jboss/wildfly"
     d.run "wild1",
       image: "jboss/wildfly",
       args: "-d -p 8081:8080"

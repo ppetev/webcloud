@@ -9,9 +9,19 @@ WebCloud project for pretending there are no PaaS-es out there
 4. execute `vagrant up`
 5. wait for ubuntu box, docker provisioner, images to download
 
+* cygwin users:
+  + you have to have openssh installed
+
 You can now go to the box an play around with `vagrant ssh`
 
 Port forwarding is set up so host machine can se the two "Wildflies" - try going to http://localhost:8081 on your machine
+
+## Proxy issues?
+
+1. install
+  * `$ vagrant plugin install vagrant-proxyconf`
+    + this will enable setting all kinds of proxy environment variables
+  * set up your proxy real values in `Vagrantfile`
 
 ## Experimental (AWS)
 
@@ -21,7 +31,9 @@ Port forwarding is set up so host machine can se the two "Wildflies" - try going
 
 * cygwin users:
   + you have to have rsync installed
-  + `$ ln -s /cygdrive/d /d`
+  + create symbolic link so `/c` and `/d` are drives
+    - `$ ln -s /cygdrive/c /c`
+    - `$ ln -s /cygdrive/d /d`
 * you have to have an Amazon AWS account :)
   + generate keypair
     - important: `chmod 700 <your local .pem>`
