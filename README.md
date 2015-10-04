@@ -5,17 +5,15 @@ WebCloud project for pretending there are no PaaS-es out there
 
 1. install virtualbox
 2. install vagrant
-3. go to `/vagrant` directory
-4. execute `vagrant up`
-
-* Linux users:
-  + if the output starts with "Bringing machine 'default' up with 'libvirt' provider...", then execute:
-  `vagrant up --provider virtualbox`
-
-5. wait for ubuntu box, docker provisioner, images to download
-
-* cygwin users:
-  + you have to have openssh installed
+3. install maven
+4. go to `/application` and execute `./buildapp.sh`
+5. go to `/vagrant` directory
+6. execute `vagrant up`
+  * Linux users:
+    + if the output starts with "Bringing machine 'default' up with 'libvirt' provider...", then execute: `vagrant up --provider virtualbox`
+7. wait for ubuntu box, docker provisioner, images to download
+  * cygwin users:
+    + you have to have openssh installed
 
 You can now go to the box an play around with `vagrant ssh`
 
