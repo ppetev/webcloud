@@ -5,6 +5,8 @@ Vagrant.configure(2) do |config|
   config.vm.network "forwarded_port", guest: 9081, host: 9081
   config.vm.network "forwarded_port", guest: 9082, host: 9082
 
+  config.vm.synced_folder "../application", "/home/vagrant/application"
+
   config.vm.provider "virtualbox" do |v|
     v.memory = 3072
     v.cpus = 2
@@ -25,7 +27,7 @@ Vagrant.configure(2) do |config|
   config.vm.provision "docker" do |d|
     d.pull_images "nats"
     d.pull_images "ppetev/gorouter"
-    d.pull_images "jboss/wildfly"
+    d.build_image "/home/vagrant/application", args: "-t geekies/predcomposer"
     d.run "nats",
       image: "nats",
       args: "-d -p 6222:6222 -p 4222:4222 -p 8222:8222"
@@ -36,10 +38,10 @@ Vagrant.configure(2) do |config|
       image: "ppetev/gorouter",
       args: "-d --net=host"
     d.run "wild1",
-      image: "jboss/wildfly",
+      image: "geekies/predcomposer",
       args: "-d -p 9081:8080"
     d.run "wild2",
-      image: "jboss/wildfly",
+      image: "geekies/predcomposer",
       args: "-d -p 9082:8080"
   end
 end

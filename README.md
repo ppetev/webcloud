@@ -7,6 +7,11 @@ WebCloud project for pretending there are no PaaS-es out there
 2. install vagrant
 3. go to `/vagrant` directory
 4. execute `vagrant up`
+
+* Linux users:
+  + if the output starts with "Bringing machine 'default' up with 'libvirt' provider...", then execute:
+  `vagrant up --provider virtualbox`
+
 5. wait for ubuntu box, docker provisioner, images to download
 
 * cygwin users:
@@ -14,7 +19,7 @@ WebCloud project for pretending there are no PaaS-es out there
 
 You can now go to the box an play around with `vagrant ssh`
 
-Port forwarding is set up so host machine can se the two "Wildflies" - try going to http://localhost:8081 on your machine
+Port forwarding is set up so host machine can se the two "Wildflies" - try going to http://localhost:9081 or http://localhost:9082 on your machine
 
 ## Proxy issues?
 
