@@ -19,6 +19,13 @@ You can now go to the box an play around with `vagrant ssh`
 
 Port forwarding is set up so host machine can se the two "Wildflies" - try going to http://localhost:9081 or http://localhost:9082 on your machine
 
+## Issues on Linux?
+
+If upon starting vagrant VirtualBox reports that it is not usable on your machine, make sure you recompile its modules by running as root:
+`/etc/init.d/vboxdrv setup`
+
+If your vagrant VM falls into 'guru meditation' state, make sure that you are running with kernel older than 4.2. This will be fixed in version 4.3.32 of VirtualBox. More information (including a workaround for newer kernels) can be found here: https://www.virtualbox.org/ticket/14531
+
 ## Proxy issues?
 
 1. install
