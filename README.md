@@ -57,3 +57,8 @@ If your vagrant VM falls into 'guru meditation' state, make sure that you are ru
 3. copy the Vagrantfile from /vagrant-aws folder in this project
 4. `$ vagrant up --provider=aws`
 5. Enjoy
+
+## Misc
+
+* How to start simple http server for testing
+  + `python3 -m http.server 9081`
