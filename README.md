@@ -17,7 +17,16 @@ WebCloud project for pretending there are no PaaS-es out there
 
 You can now go to the box an play around with `vagrant ssh`
 
-Port forwarding is set up so host machine can se the two "Wildflies" - try going to http://localhost:9081 or http://localhost:9082 on your machine
+Port forwarding is set up so host machine can se the two "Wildflies" - try going to http://localhost:9081 or http://localhost:9082 on your machine.
+
+### Loadbalancing
+
+There is a loadbalancer installed (GoRouter) as well. It will listen on port 8081 (mapped to 8080 on the host machine). In order to use it you have to add the following resolution configuiration in your hosts file:
+
+`127.0.0.1 my.cloud.com`
+
+GoRouter will then proxy all the requests to URLs http://my.cloud.com/...
+
 
 ## Issues on Linux?
 
