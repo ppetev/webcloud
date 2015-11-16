@@ -55,7 +55,8 @@ If your vagrant VM falls into 'guru meditation' state, make sure that you are ru
     - `$ ln -s /cygdrive/d /d`
 * you have to have an Amazon AWS account :)
   + generate keypair
-    - important: `chmod 700 <your local .pem>`
+    - important: `chmod 400 <your local .pem>`
+      * try with 444 if it does not work
   + generate access key and secret (in AWS IAM)
   + default security group - inbound: "All trafic" for source "My IP"
 
