@@ -4,6 +4,8 @@
 # Custom for Visual Studio
 *.cs     diff=csharp
 
+*.jar binary
+
 # Standard to msysgit
 *.doc	 diff=astextplain
 *.DOC	 diff=astextplain
