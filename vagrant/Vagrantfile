@@ -6,7 +6,6 @@ Vagrant.configure(2) do |config|
   config.vm.network "forwarded_port", guest: 9082, host: 9082
 
   config.vm.synced_folder "../db", "/home/vagrant/db"
-  config.vm.synced_folder "../application", "/home/vagrant/application"
   config.vm.synced_folder "../router", "/home/vagrant/router"
 
   config.vm.provider "virtualbox" do |v|
@@ -25,6 +24,9 @@ Vagrant.configure(2) do |config|
     config.vm.provision('shell', inline: docker_proxy)
   end
 
+  config.vm.provision "file", source: "../application/Dockerfile", destination: "/home/vagrant/application/Dockerfile"
+  config.vm.provision "file", source: "../application/customizations", destination: "/home/vagrant/application/customizations"
+  config.vm.provision "file", source: "../application/predcomposer/target/predcomposer.war", destination: "/home/vagrant/application/predcomposer/target/predcomposer.war"
 
   config.vm.provision "docker" do |d|
     d.pull_images "nats"
